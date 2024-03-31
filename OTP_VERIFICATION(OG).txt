@@ -1,0 +1,17 @@
+import random
+import smtplib
+server = smtplib.SMTP('smtp.gmail.com',587)
+server.starttls()
+userid = "rajgoraeklavya@gmail.com"
+password = "gcur bofk zbvc dsvl"
+server.login(userid,password)
+otp = ''.join([str(random.randint(0,9)) for i in range(6)])
+body = " -- Generated OTP From Python Program"
+receiver = input("Enter Your Email-ID: ")
+server.sendmail(userid,receiver,str(otp)+body)
+print("OTP Sent Successfully")
+email_otp = input("Enter OTP For Verification: ")
+if (email_otp == str(otp)):
+    print("OTP Verified")
+else:
+    print("Invalid OTP")
